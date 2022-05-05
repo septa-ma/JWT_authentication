@@ -1,0 +1,18 @@
+version: "1.0"
+services: 
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports: 
+      - "80:80"
+  db:
+    image: mongo:5.0.2
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+  environment: 
+    MONGO_USER: root
+    MONGO_PASSWORD: 123456789
+    MONGO_DATABASE: test_db
