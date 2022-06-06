@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -25,8 +25,11 @@
     "express-session": "^1.17.1",
     "express-validator": "^6.10.0",
     "form-data": "^3.0.0",
+    "googleapis": "^100.0.0",
     "jimp": "^0.16.1",
     "jsonwebtoken": "^8.5.1",
+    "mailgun": "^0.5.0",
+    "mailgun-js": "^0.22.0",
     "make-dir": "^3.1.0",
     "mkdirp": "^0.5.2",
     "mongoose": "^5.12.3",
