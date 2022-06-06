@@ -1,14 +1,12 @@
 {
-  "name": "main_db",
+  "name": "jwt_authentication",
   "version": "1.0.0",
-  "description": "hst main databse",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "snyk test && mocha"
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "maryam asadi :)",
-  "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "app-root-path": "^3.0.0",
@@ -39,6 +37,7 @@
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.1",
     "node-rsa": "^1.1.1",
+    "nodemailer": "^6.7.5",
     "nodemon": "^2.0.7",
     "persian-number": "^1.5.1",
     "qs": "^6.7.0",
@@ -47,7 +46,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/username/repository.git"
+    "url": "git+https://github.com/mariam-asaD/JWT_authentication.git"
+  },
+  "author": "mariam asadi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariam-asaD/JWT_authentication/issues"
   },
   "devDependencies": {
     "cookie-parser": "^1.4.5",
@@ -60,5 +64,6 @@
     "mocha": "^8.3.1",
     "snyk": "^1.527.0",
     "supertest": "^6.0.1"
-  }
+  },
+  "homepage": "https://github.com/mariam-asaD/JWT_authentication#readme"
 }

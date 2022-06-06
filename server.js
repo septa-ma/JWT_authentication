@@ -7,10 +7,11 @@ const helmet = require("helmet");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mongoSanitize = require('express-mongo-sanitize');
-global.config = require('./backend/config');
+global.config = require('./backend/config.js');
 const morgan = require('morgan'); // for logger
 const winston = require('./backend/configs/winston');  // for logger
-const mongoConnectionString = 'mongodb://localhost:27017/myWS_DB';
+const dotenv = require("dotenv").config();
+const mongoConnectionString = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
 //* Logging
 app.use(morgan('combined' , {stream: winston.stream})); // for logger
@@ -88,6 +89,7 @@ app.use((err, req, res, next) => {
 
 app.set('view engine', 'ejs');
 
-app.listen(config.port, () => {
-    console.log('connect to the server on port: ' + config.port);
+const port = process.env.SERVER_PORT;
+app.listen( port, () => {
+    console.log('connect to the server on port: ' + port );
 });
