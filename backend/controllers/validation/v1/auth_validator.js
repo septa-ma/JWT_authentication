@@ -18,9 +18,8 @@ exports.loginValidation = [
 ]
 
 exports.verifyEmailValidation = [ 
-   validate('phone, emailAdd'),
+   validate('token'),
    // write the validation for create inputs:
-   check('phone').isNumeric().not().withMessage('phone Number is required').isEmpty().isLength({min: 10, max:11}).withMessage('طول شماره تلفن حداقل 10 رقم می باشد').matches(/^(09|\+639)\d{9}$/).withMessage('شماره اشتباه وارد شده است'),
-   check('emailAdd','Email Address is required').isString().not().isEmpty(),
+   check('token','Token is required').isString().not().isEmpty(),
 ]
 

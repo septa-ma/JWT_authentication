@@ -32,6 +32,6 @@ const { registerValidation, /*verifyEmailValidation, loginValidation */} = requi
 
 // router.post('/login', loginValidation,validateRequestSchema, AuthLoginController.login.bind(AuthLoginController));
 router.post('/register', registerValidation,validateRequestSchema, AuthRegisterController.register.bind(AuthRegisterController)); 
-router.get('/verify/:token', /*verifyEmailValidation,validateRequestSchema,*/ VerificationController.verify.bind(VerificationController));
+router.get('/verify/:token', verifyEmailValidation,validateRequestSchema, VerificationController.verify.bind(VerificationController));
 
 module.exports = router;
