@@ -12,11 +12,7 @@ const userSchema = new Schema({
     phone_number : { type: Number, dropDups: true, /*unique : true,*/ maxlength: 11 },
     delete_key : { type: Number, min: 10, max: 12, required: true, default: 10 },
     email : { type: String,/* unique : true,*/ dropDups: true, match: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ },
-    email_verification : {
-        verified : { type: Boolean, default: false},
-        created_at: { type : Date, default: Date.now},
-        expired_at: { type : Date, default: Date.now},
-    },
+    email_verified : { type: Boolean, default: false},
     location_detail : { type: String, match: /[آ-یa-zA-Z]/ },
     location: {
         type: { type: String, enum: ['Point'] },

@@ -21,7 +21,7 @@ const { api : controllerApi, valid : controllerValid } = config.path.controllers
 
 // const AuthLoginController = require(`${controllerApi}/v1/Authentication/auth_login_controller`);
 const AuthRegisterController = require(`${controllerApi}/v1/Authentication/auth_register_controller`);
-const VerificationController = require(`${controllerApi}/v1/Authentication/verification_controller`)
+const VerificationController = require(`${controllerApi}/v1/Authentication/auth_verification_controller`)
 /*********************************************************************************************/
                                    /*  validation controllers */
 /*********************************************************************************************/
