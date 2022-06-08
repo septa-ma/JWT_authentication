@@ -1,4 +1,5 @@
 const express = require('express');
+const verification_controller = require('../../../controllers/api/v1/Authentication/verification_controller');
 const router = express.Router();
 
 
@@ -20,7 +21,7 @@ const { api : controllerApi, valid : controllerValid } = config.path.controllers
 
 // const AuthLoginController = require(`${controllerApi}/v1/Authentication/auth_login_controller`);
 const AuthRegisterController = require(`${controllerApi}/v1/Authentication/auth_register_controller`);
-
+const VerificationController = require(`${controllerApi}/v1/Authentication/verification_controller`)
 /*********************************************************************************************/
                                    /*  validation controllers */
 /*********************************************************************************************/
@@ -31,6 +32,6 @@ const { registerValidation, /*verifyEmailValidation, loginValidation */} = requi
 
 // router.post('/login', loginValidation,validateRequestSchema, AuthLoginController.login.bind(AuthLoginController));
 router.post('/register', registerValidation,validateRequestSchema, AuthRegisterController.register.bind(AuthRegisterController)); 
-// router.post('/verify', verifyEmailValidation,validateRequestSchema, AuthRegisterController.verify.bind(AuthRegisterController));
+router.get('/verify/:token', /*verifyEmailValidation,validateRequestSchema,*/ VerificationController.verify.bind(VerificationController));
 
 module.exports = router;
