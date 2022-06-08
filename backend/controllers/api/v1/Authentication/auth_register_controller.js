@@ -1,5 +1,5 @@
 const controller = require(`${config.path.controller}/controller`);
-const transporter = require('./email_transport');
+const transporter = require('./email_transport_controller');
 
 module.exports = new class AuthRegisterController extends controller {
     
