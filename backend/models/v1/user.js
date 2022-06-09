@@ -6,9 +6,6 @@ const jwt = require('jsonwebtoken');
 const userSchema = new Schema({
     first_name : { type: String, trim: true, match: /[آ-یa-zA-Z]/, maxlength: 50 },
     last_name : { type: String, trim: true, match: /[آ-یa-zA-Z]/, maxlength: 50 },
-    birth_date : { type: Date },
-    bio: { type: String, match: /[a-zA-Z0-9.!#$%&*+/=?^_{|}~-]/,  maxlength: 250 },
-    gender : { type: String, enum: ['F', 'M', 'other'] },
     phone_number : { type: Number, dropDups: true, unique : true, maxlength: 11 },
     delete_key : { type: Number, min: 10, max: 12, required: true, default: 10 },
     email : { type: String, unique : true, dropDups: true, match: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ },
