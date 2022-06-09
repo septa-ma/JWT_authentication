@@ -14,5 +14,5 @@ const validateRequestSchema = (req, res, next) => {
 }
 
 module.exports = {
-    validateRequestSchema
-  }
+  validateRequestSchema
+}
