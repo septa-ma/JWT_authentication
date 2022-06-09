@@ -1,47 +1,25 @@
 const transform = require('./../transform');
 const jwt = require('jsonwebtoken');
+const qr = require('qrcode');
 
 module.exports = class UserTransform extends transform {
 
     transform(item, createToken = false) {
         this.createToken = createToken;
+
+        // generating QRCode for a user.
+        const QRCode =  qr.toString(JSON.stringify(item.email), function (err, code) {
+            if(err) return console.log("error occurred")
+            return code;
+        })
+
         return {
-            'QR': item.qrcode,
-            'first_name': item.personal_info.first_name,
-            'last_name': item.personal_info.last_name,
-            'user_name': item.personal_info.user_name,
-            'phone_number': item.address_info.phone_number,   
+            'first_name': item.first_name,
+            'last_name': item.last_name,
+            'email': item.email,
+            'QRCode': QRCode,   
             ...this.withToken(item)
         }
-    }
-
-    infoPersonalUser(item) {
-        let UserList = []; // when can initialize variable use const
-        for(var i=0; i < item.length; i++){
-            const userList = [{
-                'QR': item[i].qrcode,
-                'first_name': item[i].personal_info.first_name,
-                'last_name': item[i].personal_info.last_name,
-                'user_name': item[i].personal_info.user_name,
-                'national_code:': item[i].personal_info.national_code,
-                'phone_number': item[i].address_info.phone_number,
-            }];
-            UserList = UserList.concat(userList); 
-            // console.log(reqList);
-        }
-        return UserList;
-    }
-
-    infoPersonalUsers(item) {
-        let userList = []; // when can initialize variable use const
-        for(var i=0; i < item.length; i++){
-            const userList = [{
-                'fullName': item[i].personal_info.first_name + ' ' + item[i].personal_info.last_name, 
-            }];
-            userList = userList.concat(userList); 
-            // console.log(reqList);
-        }
-        return userList;
     }
     
     withToken(item){
@@ -51,12 +29,10 @@ module.exports = class UserTransform extends transform {
         }
 
         if(this.createToken) {
-
-            let token = jwt.sign({user_id : item._id}, config.secret, {
-                expiresIn: '672h',
+            let token = jwt.sign({user_id : item._id}, process.env.USER_LOGIN_SECRET, {
+                expiresIn: '7d',
                 algorithm: 'HS512'
             });
-
             return {token}
         }
         return {};

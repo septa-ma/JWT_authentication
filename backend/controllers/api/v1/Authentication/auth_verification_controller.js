@@ -5,14 +5,7 @@ module.exports = new class VerificationController extends controller {
 
    verify (req, res) {
       const { token } = req.params
-      
-      // Check we have an id
-      if (!token) {
-         return res.status(422).send({ 
-               message: "Missing Token" 
-         });
-      }
-
+   
       // Step 1 -  Verify the token from the URL
       let payload = jwt.verify( token, process.env.USER_VERIFICATION_TOKEN_SECRET );
       

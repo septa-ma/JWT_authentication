@@ -3,6 +3,7 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 
 exports.createTransporter = async () => {
+  
     const oauth2Client = new OAuth2(
       process.env.CLIENT_ID,
       process.env.CLIENT_SECRET,
@@ -25,12 +26,12 @@ exports.createTransporter = async () => {
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-        type: "OAuth2",
-        user: process.env.EMAIL_USERNAME,
-        accessToken,
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        refreshToken: process.env.REFRESH_TOKEN
+          type: "OAuth2",
+          user: process.env.EMAIL_USERNAME,
+          accessToken,
+          clientId: process.env.CLIENT_ID,
+          clientSecret: process.env.CLIENT_SECRET,
+          refreshToken: process.env.REFRESH_TOKEN
         }
     });
 

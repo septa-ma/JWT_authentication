@@ -11,9 +11,8 @@ exports.registerValidation = [
 ]
 
 exports.loginValidation = [ 
-   validate('phone, userName'),
+   validate('userName'),
    // write the validation for create inputs:
-   check('phone').isNumeric().not().withMessage('phone Number is required').isEmpty().isLength({min: 10, max:11}).withMessage('طول شماره تلفن حداقل 10 رقم می باشد').matches(/^(09|\+639)\d{9}$/).withMessage('شماره اشتباه وارد شده است'),
    check('userName','User Name is required').isString().not().isEmpty(),
 ]
 

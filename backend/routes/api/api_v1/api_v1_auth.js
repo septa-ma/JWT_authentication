@@ -19,18 +19,19 @@ const { api : controllerApi, valid : controllerValid } = config.path.controllers
                                 /* AUTH CONTROLLER */
 /*******************************************************************************/
 
-// const AuthLoginController = require(`${controllerApi}/v1/Authentication/auth_login_controller`);
+const AuthLoginController = require(`${controllerApi}/v1/Authentication/auth_login_controller`);
 const AuthRegisterController = require(`${controllerApi}/v1/Authentication/auth_register_controller`);
 const VerificationController = require(`${controllerApi}/v1/Authentication/auth_verification_controller`)
+
 /*********************************************************************************************/
-                                   /*  validation controllers */
+                                   /* AUTH VALIDATION */
 /*********************************************************************************************/
        
-const { registerValidation, /*verifyEmailValidation, loginValidation */} = require(`${controllerValid}/v1/auth_validator`);
+const { registerValidation, verifyEmailValidation, loginValidation } = require(`${controllerValid}/v1/auth_validator`);
 
-/********************************* AUTH route ***************************************/
+/********************************* AUTH ROUT ***************************************/
 
-// router.post('/login', loginValidation,validateRequestSchema, AuthLoginController.login.bind(AuthLoginController));
+router.post('/login', loginValidation,validateRequestSchema, AuthLoginController.login.bind(AuthLoginController));
 router.post('/register', registerValidation,validateRequestSchema, AuthRegisterController.register.bind(AuthRegisterController)); 
 router.get('/verify/:token', verifyEmailValidation,validateRequestSchema, VerificationController.verify.bind(VerificationController));
 
