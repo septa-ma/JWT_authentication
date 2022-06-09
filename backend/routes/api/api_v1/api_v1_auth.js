@@ -1,5 +1,4 @@
 const express = require('express');
-const verification_controller = require('../../../controllers/api/v1/Authentication/auth_verification_controller');
 const router = express.Router();
 
 
