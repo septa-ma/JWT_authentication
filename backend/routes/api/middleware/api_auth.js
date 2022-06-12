@@ -3,9 +3,8 @@ const user = require(`${config.path.model}/user`);
 
 module.exports = (req, res, next) => {
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
-    // console.log(token);
     if(token) {
-        return jwt.verify(token, config.secret, (err, decoded) => {
+        return jwt.verify(token, process.env.USER_LOGIN_SECRET, (err, decoded) => {
             if(err) {
                 return res.json({
                     success: false,
@@ -15,7 +14,6 @@ module.exports = (req, res, next) => {
             user.findById(decoded.user_id, (err, user) => {
                 if(err) throw err;
                 if(user) {
-                    // console.log(user);
                     user.token = token;
                     req.user = user;
                     next();
@@ -25,7 +23,7 @@ module.exports = (req, res, next) => {
                         data: 'user not found'
                     });
                 }
-            })
+            }) 
         })
     }
     return res.status(403).json({

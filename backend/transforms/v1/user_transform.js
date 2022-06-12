@@ -1,41 +1,44 @@
-const transform = require('./../transform');
+const transform = require('../transform');
 const jwt = require('jsonwebtoken');
 const qr = require('qrcode');
 
 module.exports = class UserTransform extends transform {
 
-    transform(item, createToken = false) {
-        this.createToken = createToken;
-
+    user(item) {
         // generating QRCode for a user.
         const QRCode =  qr.toString(JSON.stringify(item.email), function (err, code) {
             if(err) return console.log("error occurred")
             return code;
         })
-
         return {
-            'first_name': item.first_name,
-            'last_name': item.last_name,
-            'email': item.email,
-            'QRCode': QRCode,   
-            ...this.withToken(item)
+            'full name': item.first_name + " " + item.last_name,
+            'user name': item.email,
+            'phone number': item.phone_number,
+            'QR code': QRCode
         }
     }
-    
-    withToken(item){
 
-        if(item.token){
-            return { token : item.token }
+    users(item) {
+        let UserList = []; // when can initialize variable use const
+        for(var i=0; i < item.length; i++){
+            const userList = [{
+                'full name': item[i].first_name + " " + item[i].last_name,
+                'user name': item[i].email,
+                'phone number': item[i].phone_number
+            }];
+            UserList = UserList.concat(userList); 
         }
+        return UserList;
+    }
 
-        if(this.createToken) {
-            let token = jwt.sign({user_id : item._id}, process.env.USER_LOGIN_SECRET, {
-                expiresIn: '7d',
-                algorithm: 'HS512'
-            });
-            return {token}
+    userLoc(item) {
+        
+        return {
+            'full name': item.first_name + " " + item.last_name,
+            'location': item.location,
+            'location detail': item.location_detail,
+            'phone number': item.phone_number,
         }
-        return {};
     }
 
 }

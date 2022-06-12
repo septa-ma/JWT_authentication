@@ -1,5 +1,5 @@
 const controller = require(`${config.path.controller}/controller`);
-const userTransform = require(`${config.path.transform}/user_transform`);
+const userAuthTransform = require(`${config.path.transform}/user_auth_transform`);
 
 module.exports = new class AuthLoginController extends controller {
     
@@ -17,7 +17,7 @@ module.exports = new class AuthLoginController extends controller {
                     });
                 } else {  
                     return res.status(200).json({
-                        data : new userTransform().transform(user, true),
+                        data : new userAuthTransform().transform(user, true),
                         success : true
                     }); 
                 }

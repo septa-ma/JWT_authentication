@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = {
-    secret : 'majkhfjkshdkjf@#$%jhkjshkd)(*)((*^*&%&^#!#@!#@$dsgsy54654dsg6sdfgdsf4g56df4g6df4%$&%*^&#$%#',
     path : {
         controllers : { 
             api : path.resolve('./backend/controllers/api'),
