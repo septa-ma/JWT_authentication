@@ -4,7 +4,7 @@ const transporter = require('./email_transport_controller');
 module.exports = new class AuthRegisterController extends controller {
     
     register(req, res) {
-        const { name, family, phone, about, userName } = req.body;
+        const { name, family, phone, userName } = req.body;
 
         try{ 
             // Step 1 - Save user's info
@@ -12,10 +12,9 @@ module.exports = new class AuthRegisterController extends controller {
                 first_name : name,
                 last_name : family,
                 phone_number : phone,
-                bio : about,
                 email : userName // it is user's user_name
             })
-            let register = newUser.save ();
+            let register = newUser.save();
 
             // Step 2 - Generate a verification token with the user's ID and a unique verification link
             const verificationToken = newUser.generateVerificationToken();

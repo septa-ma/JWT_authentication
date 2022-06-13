@@ -14,7 +14,7 @@ exports.simpleValidation =  [
 ]  
     
 exports.addLocValidation =  [ 
-    validate('userName, detail, locations'),
+    validate('userName, locations'),
     // write the validation for create inputs:
     check('userName','User Name is required').isString().not().isEmpty(),               
     check('locations','locations is required').isString().not().isEmpty(),                     

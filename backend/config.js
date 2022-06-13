@@ -11,6 +11,6 @@ module.exports = {
         controller : path.resolve('./backend/controllers'),
         transform : path.resolve('./backend/transforms/v1'),
         middleware : path.resolve('./backend/routes/api/middleware'),
-        config : path.resolve('./backend/configs')
+        utils : path.resolve('./backend/utils')
     }
 } 

@@ -1,5 +1,6 @@
 const controller = require(`${config.path.controller}/controller`);
 const userTransform = require(`${config.path.transform}/user_transform`);
+const geocoder = require(`${config.path.utils}/geocoder`);
 
 module.exports = new class UserController extends controller {
 
@@ -88,7 +89,7 @@ module.exports = new class UserController extends controller {
                 updateParams[`${key}`] = temp[key];
             } 
         }      
-        // update  
+        // update 
         let user = await this.model.user.findOneAndUpdate(userFilter, {$set: updateParams })
         if (!user) {
             return res.status(404).json({
@@ -105,14 +106,12 @@ module.exports = new class UserController extends controller {
         })
     }
     
-    //insert Address
+    //add Location
     async addLocation  (req, res) {
 
-        const { userName, locations, detail } = req.body;
-
+        const { userName, locations } = req.body;
         const userFilter = { "email": userName }
-              
-        //find and update  
+        //find user
         let user = await this.model.user.findOne(userFilter)
         if (!user){
             return res.status(404).json({
@@ -121,41 +120,28 @@ module.exports = new class UserController extends controller {
                 success: false
             })
         }
-        
-        let store_ids = [];
-        for(var i = 0; i < user.address_info.length ; i++) {
-            store_ids.push(user.address_info[i].store_id)
+        // geocode and add location
+        const loc = await geocoder.geocode(locations);
+        user.address = locations;
+        user.location = {
+            type: 'Point',
+            coordinates: [loc[0].longitude, loc[0].latitude],
+            formattedAddress: loc[0].formattedAddress
         }
-        var max = Math.max(...store_ids);
-        var store_id = 0;
-        if (user.address_info.length === 0) {
-            store_id = user.address_info.length + 1; 
-        } else {
-            store_id = max + 1;
-        }
-        user.address_info.push({
-            store_id: store_id,
-            city: city,
-            state: state,
-            detail: detail,
-            locations: locations,
-            postal_code: postal_code,
-            email: email,
-            telphone: telphone
-        });
-        user.markModified('address_info'); 
-        user.save(function(err, result) {
-            if (!err) {
-                return res.status(200).json({
-                    msgEn: 'inserted Address',
-                    msgFa: 'آدرس جدید اضافه شد',
-                    success: true
-                }) 
-            } else {
-                res.status(400).send(err.message);
-            }
-        }); 
-                                    
+        // update the user model
+        const result = await user.save();
+        if (!result) {
+            return res.status(200).json({
+                msgEn: 'there is some error',
+                msgFa: 'موقعیت جغرافیایی اضافه نشد',
+                success: false
+            }) 
+        }   
+        return res.status(200).json({
+            msgEn: 'inserted location',
+            msgFa: 'موقعیت جغرافیایی اضافه شد',
+            success: true
+        })                                 
     }      
     
 }

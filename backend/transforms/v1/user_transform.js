@@ -14,6 +14,8 @@ module.exports = class UserTransform extends transform {
             'full name': item.first_name + " " + item.last_name,
             'user name': item.email,
             'phone number': item.phone_number,
+            'location': item.location,
+            'location detail': item.address,
             'QR code': QRCode
         }
     }
@@ -24,21 +26,12 @@ module.exports = class UserTransform extends transform {
             const userList = [{
                 'full name': item[i].first_name + " " + item[i].last_name,
                 'user name': item[i].email,
+                'location': item[i].location,
                 'phone number': item[i].phone_number
             }];
             UserList = UserList.concat(userList); 
         }
         return UserList;
-    }
-
-    userLoc(item) {
-        
-        return {
-            'full name': item.first_name + " " + item.last_name,
-            'location': item.location,
-            'location detail': item.location_detail,
-            'phone number': item.phone_number,
-        }
     }
 
 }

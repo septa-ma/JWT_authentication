@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const mongoSanitize = require('express-mongo-sanitize');
 global.config = require('./backend/config.js');
 const morgan = require('morgan'); // for logger
-const winston = require('./backend/configs/winston');  // for logger
+const winston = require(`${config.path.utils}/winston`);  // for logger
 const dotenv = require("dotenv").config();
 const mongoConnectionString = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
@@ -26,7 +26,7 @@ app.use('/public', express.static('public'));
 app.use(cookieParser());
 
 //* for checking cors origin in whitch client is.
-var allowedOrigins = ['http://localhost:3000'];
+var allowedOrigins = ['http://localhost:3030'];
 
 app.use(cors({
 
