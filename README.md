@@ -10,3 +10,4 @@
 # upload image
 # makeing qrcode
 # adding location
+# useing cron job
