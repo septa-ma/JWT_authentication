@@ -8,3 +8,4 @@
 # makeing qrcode
 # adding location
 # useing cron job
+# DevOps (git, docker, jenkins)
