@@ -13,11 +13,16 @@ services:
       - db
   # database 
   db:
-    image: mongo:latest
+    image: mongo:5.0.11
     container_name: mongodb
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "27018:27018"
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=''
+      - MONGO_INITDB_DATABASE=testdb
+      - MONGO_REPLICA_HOST=mongo
     volumes:
       - mongodb:/data/db
 volumes:
