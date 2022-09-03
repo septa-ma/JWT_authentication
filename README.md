@@ -8,4 +8,9 @@
 # makeing qrcode
 # adding location
 # useing cron job
-# DevOps (git, docker, jenkins)
+
+# DevOps:
+    - push code to the github repo
+    - make a docker container and manage with docker compose
+    - make pipleline with jenkins
+    - push image to docker hub
