@@ -1,7 +1,7 @@
 pipeline{
     environment{
         registry = "maria22ri/my-auth-app"
-        registryCredential = "my-auth-app_id"
+        registryCredential = "my-auth-app"
         dockerImage = ''
     }
     agent any
