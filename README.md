@@ -14,3 +14,4 @@
 #    - make a docker container and manage with docker compose
 #    - make pipleline with jenkins
 #    - push image to docker hub
+#    - ansible plabook for installing docker and deploying the image

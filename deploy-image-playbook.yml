@@ -1,0 +1,10 @@
+- name: run docker image on a server
+  hosts: myserver
+  tasks:
+    - name: deploy auth-app image
+      docker_container:
+        image: maria22ri/my-auth-app:19 
+        name: auth-app
+        state: started
+        ports:
+          - "3030:3030"

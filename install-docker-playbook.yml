@@ -1,0 +1,29 @@
+- name: install docker if not exist
+  hosts: myserver
+  tasks:
+
+  - name: install prerequisites
+    apt:
+      name:
+      - apt-transport-https
+      - ca-certificates 
+      - curl 
+      - gnupg-agent
+      - software-properties-common
+
+  - name: add apt-key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+
+  - name: add docker repo
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+
+  - name: install docker 
+    apt:
+      name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+      update_cache: yes
