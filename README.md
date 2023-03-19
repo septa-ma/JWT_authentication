@@ -14,3 +14,4 @@
   - make pipleline with jenkins
   - push image to docker hub
   - ansible plabook for installing docker and deploying the image
+  -- for more information about devops tools check this repo: https://github.com/septa-ma/DevOps.git
